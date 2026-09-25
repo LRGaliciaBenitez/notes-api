@@ -71,6 +71,7 @@ export class UsersService {
           name: true,
           email: true,
           age: true,
+          role: true,
         }
       })
 
