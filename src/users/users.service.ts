@@ -23,7 +23,8 @@ export class UsersService {
           id: true,
           name: true,
           email: true,
-          age: true
+          age: true,
+          role: true
         }
       });
       
