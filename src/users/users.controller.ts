@@ -78,12 +78,14 @@ export class UsersController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('MASTER')
   async updateRole(
-    @Param('id') id: String,
+    @Param('id') id: string,
     @Body() body: UpdateRoleDto,
+    @Req() request: any,
   ) {
     return this.usersService.updateRole(
       Number(id),
       body.role,
+      request.user.sub,
     )
   }
 }

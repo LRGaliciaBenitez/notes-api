@@ -189,6 +189,7 @@ export class UsersService {
     async updateRole(
       id:number,
       role: Role,
+      currentUserId: number,
     ) {
 
       const user = await this.prisma.user.findUnique({
@@ -201,6 +202,12 @@ export class UsersService {
         throw new NotFoundException(
           `User with id ${id} not found`
         )
+      }
+
+      if (id === currentUserId) {
+        throw new ForbiddenException(
+          'No puedes cambiar tu propio rol.',
+        );
       }
 
       return this.prisma.user.update({
